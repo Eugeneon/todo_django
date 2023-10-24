@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'checklist/css/style.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;500&display=swap" rel="stylesheet">
+
+    <title>to do list</title>
+</head>
+<body>
+
+    <div class="container">
+
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+
+    <script src="{% static 'checklist/js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'checklist/base.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="header-bar">
+    <a href="{% url 'home' %}">&#8592; Back</a>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure that you want to remove this task from the list? <i>"{{task}}"</i></p>
+        <input class="button" type="submit" value="Delete">
+    </form>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'checklist/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="header-bar">
+    <div>
+        <h1>Hello, {{request.user|title}} 🖐</h1>
+        <h3>You have {{ incomplete_count }} outstanding tasks</h3>
+    </div>
+
+    <a href="{% url 'login' %}">Logout</a>
+</div>
+
+
+<div id="search-add-wrapper">
+    <form method="GET" style="margin-top: 20px; display: flex;"> 
+        <input type="text" name="search-area" value="{{search_input}}">
+        <input class="button" type="submit" value="Search">
+    </form>
+
+    <form method="GET" style="margin-top: 20px; display: flex;">
+        <a href="{% url 'task-create' %}" class="button">Add</a>
+    </form>
+</div>
+
+
+<div class="task-items-wrapper">
+    {% for task in tasks %}
+        <div class="task-wrapper">
+            {% if task.complete %}
+                <div class="task-title">
+                    <img src="{% static 'checklist/img/accept.png' %}">
+                    <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i>
+                </div>
+                <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+            {% else %}
+                <div class="task-title">
+                    <div class="task-incomplete-icon"></div>
+                    <a href="{% url 'task-update' task.id %}">{{task}}</a>
+                </div>
+                <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <div class="task-wrapper">
+            <h3>No tasks in the list 🤷</h3>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
+
